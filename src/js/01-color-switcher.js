@@ -11,23 +11,27 @@ function startChanging(e) {
   timerId = setInterval(() => {
     document.body.style.backgroundColor = `${getRandomHexColor()}`;
   }, 1000);
-  toggleDisabled(e.target);
+  start.disabled = true;
+  stop.disabled = false;
+  // toggleDisabled(e.target);
 }
 
 function stopChanging(e) {
   clearInterval(timerId);
-  toggleDisabled(e.target);
+  start.disabled = false;
+  stop.disabled = true;
+  // toggleDisabled(e.target);
 }
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-function toggleDisabled(btn) {
-  btn.toggleAttribute('disabled');
-  btn.previousElementSibling.toggleAttribute('disabled');
-  btn.nextElementSibling.toggleAttribute('disabled');
-}
+// function toggleDisabled(btn) {
+//   btn.toggleAttribute('disabled');
+//   btn.previousElementSibling.toggleAttribute('disabled');
+//   btn.nextElementSibling.toggleAttribute('disabled');
+// }
 
 // Работает на localhost, но почему-то не работает на github pages:
 // function toggleDisabled() {
