@@ -7,24 +7,31 @@ stop.disabled = true;
 start.addEventListener('click', startChanging);
 stop.addEventListener('click', stopChanging);
 
-function startChanging() {
+function startChanging(e) {
   timerId = setInterval(() => {
     document.body.style.backgroundColor = `${getRandomHexColor()}`;
   }, 1000);
-  toggleDisabled();
+  toggleDisabled(e.target);
 }
 
-function stopChanging() {
+function stopChanging(e) {
   clearInterval(timerId);
-  toggleDisabled();
+  toggleDisabled(e.target);
 }
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-function toggleDisabled() {
-  buttons.forEach(btn => {
-    btn.toggleAttribute('disabled');
-  });
+function toggleDisabled(btn) {
+  btn.toggleAttribute('disabled');
+  btn.previousElementSibling.toggleAttribute('disabled');
+  btn.nextElementSibling.toggleAttribute('disabled');
 }
+
+// Работает на localhost, но почему-то не работает на github pages:
+// function toggleDisabled() {
+//   buttons.forEach(btn => {
+//     btn.toggleAttribute('disabled');
+//   });
+// }
