@@ -50,22 +50,13 @@ function startCountDown() {
 }
 
 // FUNCTION dispalyCountDown()
-function displayCountDown({ days, hours, minutes, seconds }) {
+function displayCountDown(obj) {
+  const CHECK_ARRAY = ['minutes', 'days', 'seconds', 'hours'];
   timeUnits.forEach(unit => {
-    switch (true) {
-      case unit.hasAttribute('data-days'):
-        unit.textContent = `${addLeadingZero(days)}`;
-        break;
-      case unit.hasAttribute('data-hours'):
-        unit.textContent = `${addLeadingZero(hours)}`;
-        break;
-      case unit.hasAttribute('data-minutes'):
-        unit.textContent = `${addLeadingZero(minutes)}`;
-        break;
-      case unit.hasAttribute('data-seconds'):
-        unit.textContent = `${addLeadingZero(seconds)}`;
-        break;
-    }
+    const attrName = unit.attributes.item(1).name;
+    const attrNameType = attrName.slice(attrName.indexOf('-') + 1);
+    CHECK_ARRAY.includes(attrNameType) &&
+      (unit.textContent = addLeadingZero(obj[attrNameType]));
   });
 }
 
