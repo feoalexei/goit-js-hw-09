@@ -14,31 +14,19 @@ function startChanging() {
     document.body.style.backgroundColor = `${getRandomHexColor()}`;
   }, 1000);
   toggleDisabled();
-  // start.disabled = true;
-  // stop.disabled = false;
 }
 
 function stopChanging() {
   clearInterval(timerId);
   toggleDisabled();
-  // start.disabled = false;
-  // stop.disabled = true;
 }
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-// Работает на localhost, но почему-то не работает на github pages:
 function toggleDisabled() {
   buttons.forEach(btn => {
     btn.toggleAttribute('disabled');
   });
 }
-
-// Также работает на localhost, но почему-то не работает на github pages:
-// function toggleDisabled(btn) {
-//   btn.toggleAttribute('disabled');
-//   btn.previousElementSibling.toggleAttribute('disabled');
-//   btn.nextElementSibling.toggleAttribute('disabled');
-// }
